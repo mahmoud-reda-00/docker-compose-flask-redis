@@ -187,5 +187,5 @@ This project demonstrates:
 
 Mahmoud Reda Hassan Saafan
 
-GitHub: https://github.com/your-username
-LinkedIn: https://linkedin.com/in/your-profile
+GitHub: https://github.com//mahmoud-reda-00
+LinkedIn: https://linkedin.com/in/mahmoud-saafan-8178b2247
