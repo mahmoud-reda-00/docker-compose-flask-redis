@@ -39,3 +39,5 @@ jobs:
 
       - name: Push image to Docker Hub
         run: docker push mv7moud/flask-redis-app:latest
+
+        
