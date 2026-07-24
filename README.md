@@ -1,71 +1,88 @@
-# Flask + Redis with Docker Compose
+# Flask + Redis with Docker Compose & ci/cd ( GitHub Actions )
 
-A simple web application built with **Flask** and **Redis**, containerized using **Docker** and orchestrated with **Docker Compose**.
-
-The application counts the number of visits using Redis and displays the current visitor count on the web page.
-
----
+A simple multi-container application built with **Flask** and **Redis**, containerized using **Docker** and automated with **GitHub Actions CI**.
 
 ## 🚀 Features
 
-- Flask web application
-- Redis as an in-memory database
-- Dockerized application
-- Docker Compose orchestration
-- Automatic communication between containers
+* Flask web application
+* Redis integration
+* Dockerized application
+* Docker Compose orchestration
+* Automated CI pipeline with GitHub Actions
+* Docker image automatically pushed to Docker Hub
 
 ---
 
-## 🏗️ Project Structure
+## 🛠️ Tech Stack
 
-```
+* Python
+* Flask
+* Redis
+* Docker
+* Docker Compose
+* GitHub Actions
+* Docker Hub
+
+---
+
+## 📂 Project Structure
+
+```text
 .
+├── .github/
+│   └── workflows/
+│       └── docker-ci.yml
+├── templates/
+│   └── index.html
 ├── app.py
 ├── Dockerfile
 ├── docker-compose.yml
 ├── requirements.txt
-├── templates/
-│   └── index.html
 └── README.md
 ```
 
 ---
 
-## 🛠️ Technologies Used
+## 🏗️ Architecture
 
-- Python
-- Flask
-- Redis
-- Docker
-- Docker Compose
-
----
-
-## 📦 Prerequisites
-
-Before running the project, make sure you have:
-
-- Docker
-- Docker Compose
-
----
-
-## ▶️ Run the Application
-
-Clone the repository:
-
-```bash
-git clone https://github.com/your-username/flask-redis-docker.git
-cd flask-redis-docker
+```text
+Browser
+    │
+    ▼
+Flask Container
+    │
+    ▼
+Redis Container
 ```
 
-Build and start the containers:
+---
+
+## ⚙️ CI Pipeline
+
+Every push to the **main** branch automatically triggers GitHub Actions.
+
+Pipeline Steps:
+
+* Checkout repository
+* Build Docker image
+* Start containers using Docker Compose
+* Run Integration Test
+* Login to Docker Hub
+* Push Docker Image
+
+---
+
+## ▶️ Run Locally
 
 ```bash
+git clone https://github.com/mahmoud-reda-00/docker-compose-flask-redis.git
+
+cd docker-compose-flask-redis
+
 docker compose up --build
 ```
 
-Open your browser:
+Open:
 
 ```
 http://localhost:5000
@@ -73,119 +90,57 @@ http://localhost:5000
 
 ---
 
-## 🧱 Services
+## 🧪 Integration Test
 
-### Web
+The CI pipeline verifies that:
 
-- Built from the local Dockerfile
-- Runs the Flask application
-- Exposes port **5000**
-
-### Redis
-
-- Uses the official Redis Alpine image
-- Stores the visitor counter
+* Flask starts successfully.
+* Redis is running.
+* Containers communicate correctly.
+* The application responds over HTTP.
 
 ---
 
-## 🔄 How It Works
+## 🐳 Docker Hub
 
-1. User visits the application.
-2. Flask receives the request.
-3. Flask sends an increment request to Redis.
-4. Redis increases the `hits` counter.
-5. Flask displays the updated number on the page.
-
----
-
-## 🏛️ Architecture
+Docker Image:
 
 ```
-+-----------+
-|  Browser  |
-+-----------+
-      |
-      v
-+----------------+
-| Flask Container|
-+----------------+
-      |
-      v
-+----------------+
-| Redis Container|
-+----------------+
+mv7moud/flask-redis-app:latest
 ```
 
----
-
-## 📋 Docker Compose
-
-```yaml
-services:
-  web:
-    build: .
-    ports:
-      - "5000:5000"
-    depends_on:
-      - redis
-
-  redis:
-    image: redis:alpine
-```
-
----
-
-## 🧹 Stop the Application
+Pull the image:
 
 ```bash
-docker compose down
+docker pull mv7moud/flask-redis-app:latest
 ```
 
-To remove containers, networks, and volumes:
+Run:
 
 ```bash
-docker compose down -v
+docker run -p 5000:5000 mv7moud/flask-redis-app:latest
 ```
 
 ---
 
-## 📸 Demo
+## 📚 What I Learned
 
-After opening:
-
-```
-http://localhost:5000
-```
-
-You will see something like:
-
-```
-Hello from Flask!
-
-Visitor Count: 25
-```
-
-Each page refresh increments the counter stored in Redis.
+* Writing Dockerfiles
+* Multi-container applications
+* Docker Compose networking
+* Flask & Redis integration
+* GitHub Actions
+* CI Pipelines
+* Docker Hub automation
 
 ---
 
-## 📚 Learning Objectives
-
-This project demonstrates:
-
-- Building Docker images
-- Writing Dockerfiles
-- Using Docker Compose
-- Running multi-container applications
-- Container networking
-- Service discovery using Docker DNS
-- Integrating Flask with Redis
-
----
-
-## 👨‍💻 Author
+## 👤 Author
 
 Mahmoud Reda Hassan Saafan
 
-GitHub: https://github.com//mahmoud-reda-00
-LinkedIn: https://linkedin.com/in/mahmoud-saafan-8178b2247
+GitHub:
+https://github.com/mahmoud-reda-00
+
+Docker Hub:
+https://hub.docker.com/u/mv7moud
