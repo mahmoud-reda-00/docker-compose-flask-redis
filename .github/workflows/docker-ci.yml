@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repository
+      - name: Checkout repos
         uses: actions/checkout@v6.1.0
 
       - name: Build Docker image
@@ -40,4 +40,3 @@ jobs:
       - name: Push image to Docker Hub
         run: docker push mv7moud/flask-redis-app:latest
 
-        
